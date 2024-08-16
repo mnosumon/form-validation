@@ -12,12 +12,38 @@ const DateOfBirth = ({ formik }) => {
         <h1>Date Of Birth</h1>
         <div className="flex justify-between items-center my-3">
           <select
-            className="w-[30%]  px-3 py-1 appearance-none border border-sky-800 rounded-md"
+            className="w-[30%] outline-none  px-3 py-1 appearance-none border border-sky-800 rounded-md"
             name=""
             id=""
           >
             <option
-              className="px-3 py-1 outline-none border border-sky-800 rounded-md"
+              className="px-3 py-1 border border-sky-800 rounded-md"
+              value=""
+              name="birthMonth"
+            >
+              54
+            </option>
+          </select>
+          <select
+            className="w-[30%] outline-none px-3 py-1 appearance-none border border-sky-800 rounded-md"
+            name=""
+            id=""
+          >
+            <option
+              className="px-3 py-1  border border-sky-800 rounded-md"
+              value=""
+              name="birthMonth"
+            >
+              54
+            </option>
+          </select>
+          <select
+            className="w-[30%] outline-none px-3 py-1 appearance-none border border-sky-800 rounded-md"
+            name=""
+            id=""
+          >
+            <option
+              className="px-3 py-1  border border-sky-800 rounded-md"
               value=""
               name="birthMonth"
             >
