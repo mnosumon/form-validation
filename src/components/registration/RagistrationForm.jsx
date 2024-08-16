@@ -1,6 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import Gender from "./gender/Gender";
+import DateOfBirth from "./dateOfBirth/DateOfBirth";
 
 let initialState = {};
 const RagistrationForm = () => {
@@ -49,6 +50,7 @@ const RagistrationForm = () => {
                 placeholder="Enter your password"
               />
               <Gender formik={formik} />
+              <DateOfBirth formik={formik} />
               <button className="text-white text-lg rounded-md bg-orange-600 px-7 py-3 w-full">
                 Sign Up
               </button>
