@@ -1,5 +1,6 @@
 import React from "react";
-import { Formik, useFormik } from "formik";
+import { useFormik } from "formik";
+import Gender from "./gender/Gender";
 
 let initialState = {};
 const RagistrationForm = () => {
@@ -18,20 +19,36 @@ const RagistrationForm = () => {
             <h1 className="text-2xl font-mono font-bold mb-5">Registration</h1>
             <form onSubmit={formik.handleSubmit} action="">
               <input
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                autoComplete="off"
+                value={formik.values.fullName}
+                name="fullName"
                 type="text"
                 className="w-full px-5 py-2 outline-none  border border-sky-800 rounded-md mb-3 text-lg font-sans"
                 placeholder="Enter your name"
               />
               <input
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                autoComplete="off"
+                value={formik.values.email}
+                name="email"
                 type="email"
                 className="w-full px-5 py-2 outline-none  border border-sky-800 rounded-md mb-3 text-lg font-sans"
                 placeholder="Enter your email"
               />
               <input
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                autoComplete="off"
+                value={formik.values.password}
+                name="password"
                 type="password"
                 className="w-full px-5 py-2 outline-none  border border-sky-800 rounded-md mb-3 text-lg font-sans"
                 placeholder="Enter your password"
               />
+              <Gender formik={formik} />
               <button className="text-white text-lg rounded-md bg-orange-600 px-7 py-3 w-full">
                 Sign Up
               </button>
