@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import Gender from "./gender/Gender";
 import { formWarning } from "../../warning/formWarning";
@@ -12,13 +12,31 @@ let initialState = {
   year: new Date().getFullYear(),
 };
 const RagistrationForm = () => {
+  let [age, setAge] = useState("");
   let formik = useFormik({
     initialValues: initialState,
     validationSchema: formWarning,
     onSubmit: () => {
-      console.log("Submited");
+      if (currentDate - pickedDate < adult) {
+        return setAge("You are not 18+");
+      } else if (currentDate - pickedDate > old) {
+        return setAge("You are also 70+");
+      } else {
+        return setAge("");
+      }
     },
   });
+
+  let currentDate = new Date();
+  let pickedDate = new Date(
+    formik.values.year,
+    formik.values.month - 1,
+    formik.values.date
+  );
+  let adult = new Date(1970 + 18, 0, 1);
+  let old = new Date(1970 + 70, 0, 1);
+  console.log(age);
+
   let storeYear = new Date().getFullYear();
   let years = Array.from(new Array(105), (val, index) => storeYear - index);
   let month = Array.from(new Array(12), (val, index) => 1 + index);
@@ -91,39 +109,47 @@ const RagistrationForm = () => {
                 <h1>Date Of Birth</h1>
                 <div className="flex justify-between items-center my-3">
                   <select
-                    className="w-[30%] outline-none  px-3 py-1 appearance-none border border-sky-800 rounded-md"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    autoComplete="off"
+                    value={formik.values.date}
                     name="date"
-                    id=""
-                  >
-                    {years.map((item, index) => (
-                      <option className="px-3 py-1 border border-sky-800 rounded-md">
-                        {item}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    className="w-[30%] outline-none px-3 py-1 appearance-none border border-sky-800 rounded-md"
-                    name="month"
-                    id=""
-                  >
-                    {month.map((item, index) => (
-                      <option className="px-3 py-1 border border-sky-800 rounded-md">
-                        {item}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    className="w-[30%] outline-none px-3 py-1 appearance-none border border-sky-800 rounded-md"
-                    name="year"
-                    id=""
+                    className="border border-yellow-500 rounded-md  w-[30%] outline-none p-2 appearence-none"
                   >
                     {date.map((item, index) => (
-                      <option className="px-3 py-1 border border-sky-800 rounded-md">
-                        {item}
-                      </option>
+                      <option key={index}>{item}</option>
+                    ))}
+                  </select>
+                  <select
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    autoComplete="off"
+                    value={formik.values.month}
+                    name="month"
+                    className="border border-yellow-500 rounded-md w-[30%] outline-none p-2 appearence-none"
+                  >
+                    {month.map((item, index) => (
+                      <option key={index}>{item}</option>
+                    ))}
+                  </select>
+                  <select
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    autoComplete="off"
+                    value={formik.values.year}
+                    name="year"
+                    className="border border-yellow-500 rounded-md  w-[30%] outline-none p-2 appearence-none"
+                  >
+                    {years.map((item, index) => (
+                      <option key={index}>{item}</option>
                     ))}
                   </select>
                 </div>
+                {age && (
+                  <p className="text-sm font-gilroyRegular py-2 text-red-500">
+                    {age}
+                  </p>
+                )}
               </div>
               <button className="text-white text-lg rounded-md bg-orange-600 px-7 py-3 w-full">
                 Sign Up
