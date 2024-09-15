@@ -17,6 +17,16 @@ const RagistrationForm = () => {
     initialValues: initialState,
     validationSchema: formWarning,
     onSubmit: () => {
+      let currentDate = new Date();
+      let pickedDate = new Date(
+        formik.values.year,
+        formik.values.month - 1,
+        formik.values.date
+      );
+
+      let adult = new Date(1970 + 18, 0, 1);
+      let old = new Date(1970 + 70, 0, 1);
+
       if (currentDate - pickedDate < adult) {
         return setAge("You are not 18+");
       } else if (currentDate - pickedDate > old) {
@@ -26,16 +36,6 @@ const RagistrationForm = () => {
       }
     },
   });
-
-  let currentDate = new Date();
-  let pickedDate = new Date(
-    formik.values.year,
-    formik.values.month - 1,
-    formik.values.date
-  );
-  let adult = new Date(1970 + 18, 0, 1);
-  let old = new Date(1970 + 70, 0, 1);
-  console.log(age);
 
   let storeYear = new Date().getFullYear();
   let years = Array.from(new Array(105), (val, index) => storeYear - index);
@@ -151,7 +151,10 @@ const RagistrationForm = () => {
                   </p>
                 )}
               </div>
-              <button className="text-white text-lg rounded-md bg-orange-600 px-7 py-3 w-full">
+              <button
+                type="submit"
+                className="text-white text-lg rounded-md bg-orange-600 px-7 py-3 w-full"
+              >
                 Sign Up
               </button>
             </form>

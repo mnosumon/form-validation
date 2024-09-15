@@ -11,9 +11,9 @@ const Gender = ({ formik }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             autoComplete="off"
-            value="female"
+            value="male"
             name="gender"
-            id="female"
+            id="male"
             type="radio"
             className="py-3 px-6 w-full font-gilroyRegular focus:outline-none border border-lineColor rounded-md"
           />
